@@ -13,9 +13,9 @@ class Solution:
         for i in range(n-2):
             if i>0 and nums[i]==nums[i-1]: # 不可以有重复的三元组
                 continue
-            if x+nums[i+1]+nums[i+2]>0: # 剪枝
+            if nums[i]+nums[i+1]+nums[i+2]>0: # 剪枝
                 break
-            if x+nums[-2]+nums[-1]<0: # 剪枝
+            if nums[i]+nums[-2]+nums[-1]<0: # 剪枝
                 break
             left=i+1
             right=n-1
