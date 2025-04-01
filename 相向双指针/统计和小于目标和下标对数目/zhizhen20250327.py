@@ -6,12 +6,14 @@
 # 空间复杂度：O(1)
 
 class Solution:
-    def countPairs(self, nums: List[int], target: int) -> int:
+    def countPairs(self, nums, target):
         nums.sort()
+        print(nums)
         count=0 # 统计和小于目标和的下标对数量
         left=0
         right=len(nums)-1
         while left<right:
+            print([left, right])
             # 一直移动right指针，直到满足nums[left]+nums[right]<target为止，此时就找到了对于left而言合法的下标值
             while left<right and nums[left]+nums[right]>=target:
                 right-=1
@@ -19,3 +21,8 @@ class Solution:
             left+=1 # 移动left指针，开始查找对于left+1而言合法的下标值（不需要复原right，因为上一个left+right<target，那么left+1的合法指针数量只会更少）
             
         return count
+    
+sol=Solution()
+nums=[-1,1,2,3,1]
+target=2
+print(sol.countPairs(nums,target))
