@@ -23,8 +23,7 @@ class Solution:
                 # [left, mid-1] 闭区间
                 right=mid-1
         # 循环结束后left=right+1，此时nums[left-1]<target而nums[left]=nums[right+1]>=target
-        # 因此left就是第一个>=target的元素下标
-        return left
+        return left # 第一个大于等于target的元素下标
     
     def lower_bound2(self, nums, target):
         """
@@ -38,7 +37,7 @@ class Solution:
                 left=mid+1 # [mid+1, right)
             else:
                 right=mid # [left, mid)
-        return left
+        return left # 第一个大于等于left的元素下标
 
     def lower_bound3(self, nums, target):
         """
@@ -63,7 +62,7 @@ class Solution:
         start=self.lower_bound1(nums, target) # 找到第一个等于target的数组的下标
         if start==len(nums) or nums[start]!=target:
             return [-1, -1]
-        # 想找到<=target的最后一个数，可以找到>target的第一个数（>target等价于>=target+1）
+        # 想找到<=target的最后一个数，可以找到>target的第一个数（>target等价于>=target+1），那么这个数前面的数就是<=target的最后一个数
         # 由于数组已经有序了，因此再将得到的下标减去1即可
         end=self.lower_bound1(nums, target+1)-1
         return [start, end]
