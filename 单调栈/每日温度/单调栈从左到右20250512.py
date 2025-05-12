@@ -1,0 +1,19 @@
+# 分析
+# 1. 先进后出（先进先出的是队列）
+# （1）记录的数据加在最上面 （2）丢掉数据也先从最上面开始
+# 2. 单调性：记录t[i]之前会把所有<=t[i]的数据丢掉，不可能出现上面大下面小
+
+# 单调栈中存储的是元素的下标，而不是元素的值
+
+# 时间复杂度：O(n) 每个元素最多会入栈和出栈一次
+# 空间复杂度：O(n)，最坏情况下栈内有n个元素 但是由于栈中的元素为30到100个，因此栈最多有71个元素，因此为O(1)
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        ans=[0]*len(temperatures)
+        st=[]
+        for i in range(len(temperatures)):
+            while st and temperatures[i]>temperatures[st[-1]]:
+                j=st.pop()
+                ans[j]=i-j
+            st.append(i)
+        return ans
